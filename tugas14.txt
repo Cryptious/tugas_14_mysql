@@ -1,0 +1,6 @@
+CREATE TRIGGER `nilai_ipk` AFTER INSERT ON `nilai_mahasiswa`
+ FOR EACH ROW BEGIN
+	INSERT INTO ipk SET
+    nama_dan_nip = CONCAT(UPPER(new.nama),' (',new.nim,')'),
+    nilai_ipk = ROUND(((new.semester_1 + new.semester_2 + new.semester_3)/3),2);
+END
